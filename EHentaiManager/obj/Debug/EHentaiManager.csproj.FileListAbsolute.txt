@@ -1,0 +1,10 @@
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\EHentaiManager.dll
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\EHentaiManager.pdb
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\EHentaiModel.dll
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\HtmlAgilityPack.dll
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\EHentaiModel.pdb
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\HtmlAgilityPack.pdb
+D:\VSWORK\EHentaiViewer\EHentaiManager\bin\Debug\HtmlAgilityPack.xml
+D:\VSWORK\EHentaiViewer\EHentaiManager\obj\Debug\EHentaiManager.csprojResolveAssemblyReference.cache
+D:\VSWORK\EHentaiViewer\EHentaiManager\obj\Debug\EHentaiManager.dll
+D:\VSWORK\EHentaiViewer\EHentaiManager\obj\Debug\EHentaiManager.pdb
