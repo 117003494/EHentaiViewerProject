@@ -1,0 +1,88 @@
+﻿<Window x:Class="EHentaiViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EHentaiViewer"
+        xmlns:me="clr-namespace:EHentaiViewer.include"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Window.Resources>
+        <me:ImageDataConvert x:Key="imgConvert"></me:ImageDataConvert>
+        <Style TargetType="TextBlock" x:Key="stepListBoxItemStyle">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightBlue" Opacity=".4"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightBlue" Opacity=".4"/>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="18"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextAlignment="Center" Padding="0 5 0 0">分类：</TextBlock>
+                <ComboBox Grid.Column="1" Name="cagetoryCombo" DisplayMemberPath="Key" SelectedValuePath="Value"></ComboBox>
+                <TextBlock Grid.Column="2" TextAlignment="Center" Padding="0 5 0 0">关键字：</TextBlock>
+                <TextBox Name="KeyWord" BorderBrush="Black" Grid.Column="3"></TextBox>
+                <Button Grid.Column="4" Margin="1" Click="Button_Click">查  找</Button>
+                <Button Grid.Column="5" Margin="1" Click="Button_Click_Download">下  载</Button>
+            </Grid>
+        </GroupBox>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Width="Auto" Grid.Row="1">
+            <ListBox Name="mainListBox" Width="Auto" MouseDoubleClick="mainListBox_MouseDoubleClick">
+                <ListBox.Template>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="180" Height="220">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="170"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="15"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource imgConvert}">
+                                        <Binding Path="Cover" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap" Grid.Row="1"></TextBlock>
+                            <TextBlock Text="{Binding Path=Cagetory}" Grid.Row="2"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <ListBox Grid.Row="2" Name="StepList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" DisplayMemberPath="showString" SelectedValuePath="pageId" SelectionChanged="StepList_SelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <!--<ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock TextAlignment="Center" FontSize="18" Padding="0,2,0,0" Text="{Binding Path=showString}" Background="Gray" Width="24" Height="24" MouseDown="TextBlock_MouseDown" Style="{StaticResource ResourceKey=stepListBoxItemStyle}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>-->
+        </ListBox>
+        <ProgressBar Grid.Row="3" Name="downloadPro" />
+    </Grid>
+</Window>
